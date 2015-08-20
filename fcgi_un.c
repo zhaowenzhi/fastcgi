@@ -47,13 +47,14 @@ int main(int argc, char *argv[])
 		printf("Socket created failed.\n");
 		return -1;
 	}
-
+	char *unixSocket = "/dev/shm/php-cgi.sock";//unix socket 文件位置
+	char *scriptFile = "/usr/local/nginx/html/index.php";//请求php的脚本
 	int i=0;
 	//servaddr.sin_family=AF_INET;
 	//servaddr.sin_port=htons(9000);
 	//servaddr.sin_addr.s_addr=htonl(INADDR_ANY);
 	servaddr.sun_family = AF_UNIX;
-	strcpy(servaddr.sun_path, "/dev/shm/php-cgi.sock");
+	strcpy(servaddr.sun_path, unixSocket);
 	
 	printf("connecting...\n");
 	if(connect(sockfd,(struct sockaddr *)&servaddr,sizeof(servaddr))<0)
@@ -80,7 +81,7 @@ int main(int argc, char *argv[])
 	//要发送的包信息
 	struct nvpairStr nvs[] = {
 		{"REQUEST_METHOD", "POST"}, {"CONTENT_TYPE", "application/x-www-form-urlencoded"},
-		{"SCRIPT_FILENAME", "/usr/local/nginx/html/index.php"}, {"CONTENT_LENGTH", sLen}///usr/local/nginx/html/index.php   /data/wwwroot/index.php
+		{"SCRIPT_FILENAME", scriptFile}, {"CONTENT_LENGTH", sLen}
 		};
 	nvpair = buildNvpairS(nvs, sizeof(nvs)/sizeof(struct nvpairStr));
 	if(nvpair.len == -1) {
