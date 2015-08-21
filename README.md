@@ -7,4 +7,4 @@ fastcgi by c
 
 3、gcc -o fcgiun fcgi_un.c
 
-4、run ./fcgiun 
+4、run1 ./fcgiun 
