@@ -62,7 +62,7 @@ int main(int argc, char *argv[])
 		printf("Connect server failed.\n");
 		return -1;
 	}
-	id = 3;//ID
+	id = 1;//ID
 	s[0]=(char)(0);s[1]=(char)(1);s[2]=(char)(0);
 	s[3]=(char)(0);s[4]=(char)(0);
 	s[5]=(char)(0);s[6]=(char)(0);
