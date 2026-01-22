@@ -8,3 +8,6 @@ fastcgi by c
 3、gcc -o fcgiun fcgi_un.c
 
 4、./fcgiun 
+
+
+其中：fcgi_un.c为unixSocket版本；fcgi_un_ip.c为IP版本
